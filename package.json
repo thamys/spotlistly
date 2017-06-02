@@ -1,0 +1,33 @@
+{
+  "name": "spotlistly",
+  "version": "1.0.0",
+  "description": "Web App to find and list artists, albuns and songs from Spotfy.",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build",
+    "build": "webpack -d && copy src/index.html dist/index.html && webpack-dev-server --content-base src/ --inline",
+    "build:prod": "webpack -p && copy src/index.html dist/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thamys/spotlistly.git"
+  },
+  "author": "Thamyres Guedes Corrêa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thamys/spotlistly/issues"
+  },
+  "homepage": "https://github.com/thamys/spotlistly#readme",
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  },
+  "devDependencies": {
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
+  }
+}
