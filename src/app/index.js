@@ -8,11 +8,12 @@ import { Footer } from "./components/Footer";
 
 class App extends React.Component {
     render() {
+        var user =[];
         return (
             <div className="all">
               <Header/>
               <Home initialTerms="Termo da Busca" />
-              <Spotify/>
+              <Spotify access_token="" user={user}/>
               <Footer/>
             </div>
         );
