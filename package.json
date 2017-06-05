@@ -1,7 +1,7 @@
 {
   "name": "spotlistly",
   "version": "1.0.0",
-  "description": "Web App to find and list artists, albuns and songs from Spotfy.",
+  "description": "Web App to find and list artists, albums and songs from Spotfy.",
   "main": "index.js",
   "scripts": {
     "start": "npm run build",
