@@ -13,7 +13,7 @@ class App extends React.Component {
             <div className="all">
               <Header/>
               <Home initialTerms="Termo da Busca" />
-              <Spotify access_token="" user={user}/>
+              <Spotify access_token="" user={user} subreddit="reactjs"/>
               <Footer/>
             </div>
         );
