@@ -1,21 +1,22 @@
 import React from "react";
 import { render } from "react-dom";
+import { Router, Route } from "react-router";
+import { createBrowserHistory } from 'history';
 
-import { Header } from "./components/Header";
+import { Root } from "./components/Root";
 import { Home } from "./components/Home";
-import { Spotify } from "./components/Spotify";
-import { Footer } from "./components/Footer";
+import { Login } from "./components/Login";
 
 class App extends React.Component {
     render() {
         var user =[];
         return (
-            <div className="all">
-              <Header/>
-              <Home initialTerms="Termo da Busca" />
-              <Spotify access_token="" user={user} subreddit="reactjs"/>
-              <Footer/>
-            </div>
+            <Router history={createBrowserHistory()} >
+                <Route component={Root}>
+                    <Route path={"home"} component={Home} />
+                    <Route path={"login"} component={Login} />
+                </Route>
+            </Router>
         );
     }
 }

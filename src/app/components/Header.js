@@ -1,7 +1,7 @@
 import React from "react";
 
-export class Header extends React.Component{
-    render() {
+export class Header extends React.Component {
+    render(){
         return(
             <nav className="navbar navbar-default navbar-fixed-top">
                 <div className="container">
@@ -35,6 +35,6 @@ export class Header extends React.Component{
                     </div>
                 </div>
             </nav>
-        );
+        )
     }
 }

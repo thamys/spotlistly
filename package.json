@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build",
-    "build": "webpack -d && cp src/index.html dist/index.html && webpack-dev-server --content-base src/ --inline",
+    "build": "webpack -d && cp src/index.html dist/index.html && webpack-dev-server --content-base src/ --inline --history-api-fallback",
     "build:prod": "webpack -p && cp src/index.html dist/index.html"
   },
   "repository": {
@@ -20,8 +20,12 @@
   "homepage": "https://github.com/thamys/spotlistly#readme",
   "dependencies": {
     "axios": "^0.16.2",
+    "cookie-parser": "^1.4.3",
+    "history": "^4.6.1",
+    "querystring": "^0.2.0",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "react-router": "^4.1.1"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",

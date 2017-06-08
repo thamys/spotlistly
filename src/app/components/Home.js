@@ -11,14 +11,15 @@ export class Home extends React.Component{
     }
 
     onSearch(){
+        var terms = document.getElementById("search-terms").value;
         this.setState({
-            terms: "Busquei"
+            terms: terms
         });
     }
 
     render(){
         return(
-            <div className="container">
+            <div className="search-bar">
                 <div className="page-header">
                     <h1>Buscar no Spotify</h1>
                 </div>
@@ -26,7 +27,7 @@ export class Home extends React.Component{
                 <div className="row">
                     <div className="col-md-12">
                         <div className="input-group">
-                            <input type="text" id="search-terms" className="form-control" placeholder="Search for..."/>
+                            <input type="text" id="search-terms" className="form-control" placeholder="Search for..."  onChange={() => this.onSearch()}  />
                             <span className="input-group-btn">
                                 <button onClick={() => this.onSearch()} className="btn btn-default" type="button">Go!</button>
                             </span>
