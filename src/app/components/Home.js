@@ -19,7 +19,7 @@ export class Home extends React.Component{
 
     render(){
         return(
-            <div className="search-bar">
+            <div className="homepagr">
                 <div className="page-header">
                     <h1>Buscar no Spotify</h1>
                 </div>
