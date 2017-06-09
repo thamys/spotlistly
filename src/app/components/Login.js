@@ -1,7 +1,5 @@
 import React from "react";
 import axios from "axios";
-import querystring from "querystring"
-import cookieParser from "cookie-parser"
 
 export class Login extends React.Component{
     componentDidMount(){
@@ -50,6 +48,8 @@ export class Login extends React.Component{
           return text;
         };
 
+        /*
+
         var userProfileSource = document.getElementById('user-profile-template').innerHTML,
             userProfileTemplate = Handlebars.compile(userProfileSource),
             userProfilePlaceholder = document.getElementById('user-profile');
@@ -57,8 +57,9 @@ export class Login extends React.Component{
             oauthSource = document.getElementById('oauth-template').innerHTML,
             oauthTemplate = Handlebars.compile(oauthSource),
             oauthPlaceholder = document.getElementById('oauth');
-
+ */
         var params = getHashParams();
+       
 
         var access_token = params.access_token,
             state = params.state,
@@ -75,7 +76,8 @@ export class Login extends React.Component{
                   'Authorization': 'Bearer ' + access_token
                 },
                 success: function(response) {
-                  userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+                  //userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+                  console.log(response);
 
                   $('#login').hide();
                   $('#loggedin').show();
@@ -113,10 +115,10 @@ export class Login extends React.Component{
                 <div className="page-header">
                     <h1>Login Page</h1>
                 </div>
-                <div class="container">
+                <div className="container">
                     <div id="login">
                         <h1>This is an example of the Implicit Grant flow</h1>
-                        <button id="login-button" class="btn btn-primary">Log in with Spotify</button>
+                        <button id="login-button" className="btn btn-primary">Log in with Spotify</button>
                     </div>
                     <div id="loggedin">
                         <div id="user-profile">
@@ -125,33 +127,7 @@ export class Login extends React.Component{
                         </div>
                     </div>
                 </div>
-
-                <script id="user-profile-template" type="text/x-handlebars-template">
-                    <h1>Logged in as {{display_name}}</h1>
-                    <div class="media">
-                        <div class="pull-left">
-                        <img class="media-object" width="150" src="{{images.0.url}}" />
-                        </div>
-                        <div class="media-body">
-                        <dl class="dl-horizontal">
-                            <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
-                            <dt>Id</dt><dd>{{id}}</dd>
-                            <dt>Email</dt><dd>{{email}}</dd>
-                            <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
-                            <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
-                            <dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
-                            <dt>Country</dt><dd>{{country}}</dd>
-                        </dl>
-                        </div>
-                    </div>
-                </script>
-
-                <script id="oauth-template" type="text/x-handlebars-template">
-                    <h2>oAuth info</h2>
-                    <dl class="dl-horizontal">
-                        <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
-                    </dl>
-                </script>
+                
             </div>
         );
     }
