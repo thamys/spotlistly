@@ -1,6 +1,6 @@
 import React from "react";
 
-export class Home extends React.Component{
+export class Search extends React.Component{
 
     constructor(props){
         super();
@@ -14,12 +14,12 @@ export class Home extends React.Component{
         var terms = document.getElementById("search-terms").value;
         this.setState({
             terms: terms
-        });
+        }); 
     }
 
     render(){
         return(
-            <div className="homepagr">
+            <div className="search-box">
                 <div className="page-header">
                     <h1>Buscar no Spotify</h1>
                 </div>
@@ -37,12 +37,13 @@ export class Home extends React.Component{
                 <div className="page-header">
                     <h5>Resultados para: {this.state.terms}</h5>
                 </div>
+                
             </div>
         );
     }
 }
 
-Home.propTypes = {
+Search.propTypes = {
     initialTerms: React.PropTypes.string,
     terms: React.PropTypes.string
 }

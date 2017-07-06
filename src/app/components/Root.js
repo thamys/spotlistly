@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Header } from "./Header";
-import { Footer } from "./Footer";
+import { Header } from "./partials/Header";
+import { Footer } from "./partials/Footer";
 
 export class Root extends React.Component{
     render(){

@@ -2,22 +2,28 @@ import React from "react";
 import axios from "axios";
 
 export class Login extends React.Component{
+
+    constructor(props){
+        super();
+        this.state = {
+            initialStateKey:'spotify_auth_state',
+            stateKey: 'spotify_auth_state'
+        };
+    }
+
     componentDidMount(){
+
         /*
-        axios.get(`http://www.reddit.com/r/${this.props.subreddit}.json`)
-        .then(res => {
-            const posts = res.data.data.children.map(obj => obj.data);
-            this.setState({ posts });
-        });
+            axios.get(`http://www.reddit.com/r/${this.props.subreddit}.json`)
+            .then(res => {
+                const posts = res.data.data.children.map(obj => obj.data);
+                this.setState({ posts });
+            });
 
-        var client_id = 'fd1bf045a59147779664bd8d76dca0c4'; // Your client id
-        var client_secret = '30fac07b1ecd4539ae7324162850019a'; // Your secret
-        var redirect_uri = 'REDIRECT_URI'; // Your redirect uri
-
+            var client_id = 'fd1bf045a59147779664bd8d76dca0c4'; // Your client id
+            var client_secret = '30fac07b1ecd4539ae7324162850019a'; // Your secret
+            var redirect_uri = 'REDIRECT_URI'; // Your redirect uri
         */
-
-
-        var stateKey = 'spotify_auth_state';
 
         /**
          * Obtains parameters from the hash of the URL
@@ -49,31 +55,33 @@ export class Login extends React.Component{
         };
 
         /*
-
-        var userProfileSource = document.getElementById('user-profile-template').innerHTML,
+            var userProfileSource = document.getElementById('user-profile-template').innerHTML,
             userProfileTemplate = Handlebars.compile(userProfileSource),
             userProfilePlaceholder = document.getElementById('user-profile');
 
             oauthSource = document.getElementById('oauth-template').innerHTML,
             oauthTemplate = Handlebars.compile(oauthSource),
             oauthPlaceholder = document.getElementById('oauth');
- */
+        */
         var params = getHashParams();
        
 
-        var access_token = params.access_token,
-            state = params.state,
-            storedState = localStorage.getItem(stateKey);
+        this.setState({
+            access_token: params.access_token,
+            state: params.state,
+            storedState: localStorage.getItem(this.state.stateKey)
+        }); 
 
-        if (access_token && (state == null || state !== storedState)) {
+
+        if (this.state.access_token && (this.state.state == null || this.state.state !== this.state.storedState)) {
           alert('There was an error during the authentication');
         } else {
-          localStorage.removeItem(stateKey);
-          if (access_token) {
+          localStorage.removeItem(this.state.stateKey);
+          if (this.state.access_token) {
             $.ajax({
                 url: 'https://api.spotify.com/v1/me',
                 headers: {
-                  'Authorization': 'Bearer ' + access_token
+                  'Authorization': 'Bearer ' + this.state.access_token
                 },
                 success: function(response) {
                   //userProfilePlaceholder.innerHTML = userProfileTemplate(response);
@@ -90,20 +98,22 @@ export class Login extends React.Component{
 
           document.getElementById('login-button').addEventListener('click', function() {
 
-            var client_id = 'fd1bf045a59147779664bd8d76dca0c4'; // Your client id
-            var redirect_uri = 'http://localhost:8080/callback'; // Your redirect uri
+            this.setState({
+                client_id: 'fd1bf045a59147779664bd8d76dca0c4', // Your client id
+                redirect_uri: 'http://localhost:8080/callback', // Your redirect uri
+                state: generateRandomString(16)
+            });
 
-            var state = generateRandomString(16);
+            localStorage.setItem(this.state.stateKey, this.state.state);
 
-            localStorage.setItem(stateKey, state);
             var scope = 'user-read-private user-read-email';
 
             var url = 'https://accounts.spotify.com/authorize';
             url += '?response_type=token';
-            url += '&client_id=' + encodeURIComponent(client_id);
+            url += '&client_id=' + encodeURIComponent(this.state.client_id);
             url += '&scope=' + encodeURIComponent(scope);
-            url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
-            url += '&state=' + encodeURIComponent(state);
+            url += '&redirect_uri=' + encodeURIComponent(this.state.redirect_uri);
+            url += '&state=' + encodeURIComponent(this.state.state);
 
             window.location = url;
           }, false);
@@ -131,4 +141,8 @@ export class Login extends React.Component{
             </div>
         );
     }
+}
+
+Login.propTypes = {
+    stateKey: React.PropTypes.string
 }

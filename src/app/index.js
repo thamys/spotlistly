@@ -7,11 +7,11 @@ import {
 } from 'react-router-dom';
 
 import { Root } from "./components/Root";
-import { Home } from "./components/Home";
+import { Home } from "./components/partials/Home";
 
-import { Login } from "./components/Login";
-import { Callback } from "./components/Callback";
-import { RefreshToken } from "./components/RefreshToken";
+import { Login } from "./components/auth/Login";
+import { Callback } from "./components/auth/Callback";
+import { RefreshToken } from "./components/auth/RefreshToken";
 
 class App extends React.Component {
     render() {
